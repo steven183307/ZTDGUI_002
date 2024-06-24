@@ -1,0 +1,47 @@
+{
+  "formatVersion": "1",
+  "header": {
+    "description": "Job Template for GUI Invoice2",
+    "originalLanguage": "en",
+    "abapLanguageVersion": "cloudDevelopment"
+  },
+  "generalInformation": {
+    "catalogName": "ZTDGUIJC_PDF_JOB_LOGIC02"
+  },
+  "parameters": {
+    "singleValueParameters": [
+      {
+        "name": "P_DES",
+        "value": "DES"
+      },
+      {
+        "name": "P_FN",
+        "value": "FN"
+      },
+      {
+        "name": "P_MO1",
+        "value": "Mo1"
+      },
+      {
+        "name": "P_MO2",
+        "value": "Mo2"
+      },
+      {
+        "name": "P_PID",
+        "value": "PID"
+      }
+    ],
+    "valueRangesParameters": [
+      {
+        "name": "S_ID",
+        "valueRanges": [
+          {
+            "sign": "include",
+            "option": "equals",
+            "low": "5555"
+          }
+        ]
+      }
+    ]
+  }
+}

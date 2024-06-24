@@ -1,0 +1,31 @@
+{
+  "formatVersion": "1",
+  "header": {
+    "description": "Job Catalog for GUI Invoice2",
+    "originalLanguage": "en",
+    "abapLanguageVersion": "cloudDevelopment"
+  },
+  "generalInformation": {
+    "className": "ZTDGUICL_PDF_JOB_LOGIC01"
+  },
+  "parameters": [
+    {
+      "name": "S_ID"
+    },
+    {
+      "name": "P_PID"
+    },
+    {
+      "name": "P_FN"
+    },
+    {
+      "name": "P_DES"
+    },
+    {
+      "name": "P_MO1"
+    },
+    {
+      "name": "P_MO2"
+    }
+  ]
+}

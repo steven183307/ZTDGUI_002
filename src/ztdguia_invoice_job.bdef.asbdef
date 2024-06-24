@@ -1,0 +1,13 @@
+abstract;
+strict ( 2 );
+with hierarchy;
+
+define behavior for ztdguia_invoice_job
+with control
+{
+
+  field (mandatory:execute) printopt;
+
+//  field ( readonly ) filedesc;
+
+}

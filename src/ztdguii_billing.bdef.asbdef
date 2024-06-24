@@ -1,0 +1,79 @@
+managed implementation in class ZTDGUIBP_BILLING unique;
+strict ( 1 );
+with draft;
+
+define behavior for ZTDGUII_BILLING alias billh
+persistent table ztdguit_billing
+draft table ZTDGUIDT_BILL
+lock master
+total etag Lastchangedat
+authorization master( global )
+etag master Locallastchangedat
+
+{
+
+
+  field ( mandatory : create )
+   Billingnum;
+
+  field ( readonly )
+   CreatedAt,
+   CreatedBy,
+   Lastchangedat,
+   Lastchangedby,
+   Locallastchangedat;
+
+//  field ( readonly : update )
+//   Billingnum;
+
+  create;
+  update;
+  delete;
+  association _billi { create; with draft; }
+
+  action ( features : instance ) createBilling parameter ztdguia_invoice_preview;
+  action ( features : instance ) createBillingjob deep parameter ztdguia_invoice_job;
+  action ( features : instance ) generateXml parameter ztdguia_file_type;
+
+  draft action Edit;
+  draft action Activate optimized;
+  draft action Discard;
+  draft action Resume;
+  draft determine action Prepare;
+
+  mapping for ZTDGUIT_BILLING corresponding;
+}
+
+define behavior for ZTDGUII_BILLDETL alias billi
+implementation in class ztdguibp_billdetl unique
+persistent table ztdguit_billdetl
+draft table ZTDGUIDT_BILLDET
+lock dependent by _billh
+authorization dependent by _billh
+etag master Locallastchangedat
+{
+  update;
+  delete;
+
+  association _billh { with draft; }
+
+  field ( numbering : managed ) Uuidi;
+
+  field ( mandatory : create )
+   Seq;
+
+  field ( readonly )
+   Uuidi,
+   Billingnum,
+   CreatedAt,
+   CreatedBy,
+   Lastchangedat,
+   Lastchangedby,
+   Locallastchangedat;
+
+  field ( readonly : update )
+   Seq;
+
+  mapping for ZTDGUIT_BILLDETL corresponding;
+
+}

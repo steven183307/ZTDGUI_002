@@ -1,0 +1,5 @@
+@EndUserText.label: 'Service definition for ZTDGUIC_BILLING'
+define service ZTDGUIUI_BILLING {
+  expose ZTDGUIC_BILLING  as billh;
+  expose ZTDGUIC_BILLDETL as billi;
+}

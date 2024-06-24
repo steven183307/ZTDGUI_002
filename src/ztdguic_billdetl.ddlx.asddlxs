@@ -1,0 +1,65 @@
+@Metadata.layer: #CORE
+@UI: {
+  headerInfo: {
+    typeName: '發票明細', 
+    typeNamePlural: '發票明細',
+    title: { type: #STANDARD, value: 'Seq' },
+         description: { type: #STANDARD, value: 'Prodname' } },
+         presentationVariant: 
+         [{
+         sortOrder: [{ by: 'Seq', direction: #ASC }],
+         visualizations: [{type: #AS_LINEITEM}] ,
+         maxItems: 99
+         }]
+}
+annotate view ZTDGUIC_BILLDETL with
+{
+  @UI.facet: [ {
+    id: 'idIdentification', 
+    type: #IDENTIFICATION_REFERENCE, 
+    label: 'billi', 
+    position: 10 
+  } ]
+  @UI.lineItem: [ {
+    position: 10 
+  } ]
+  @UI.identification: [ {
+    position: 10 
+  } ]
+  Seq;
+  
+  @UI.lineItem: [ {
+    position: 20 
+  } ]
+  @UI.identification: [ {
+    position: 20  
+  } ]
+  Prodname;
+  
+  @UI.lineItem: [ {
+    position: 30  
+  } ]
+  @UI.identification: [ {
+    position: 30 
+  } ]
+  Quantity;
+  
+  @UI.lineItem: [ {
+    position: 40 
+  } ]
+  @UI.identification: [ {
+    position: 40 
+  } ]
+  Price;
+  
+  @UI.lineItem: [ {
+    position: 50
+  } ]
+  @UI.identification: [ {
+    position: 50 
+  } ]
+  Memo;
+  
+  @UI.hidden: true
+  Locallastchangedat;
+}

@@ -1,0 +1,131 @@
+@Metadata.layer: #CORE
+@UI: {
+  headerInfo: {
+    typeName: 'Invoice',
+    typeNamePlural: 'Invoice',
+    title: { type: #STANDARD, value: 'Sellername' },
+         description: { type: #STANDARD, value: 'Billingnum' } },
+         presentationVariant: [{
+         sortOrder: [{ by: 'Date01', direction: #ASC }],
+         visualizations: [{type: #AS_LINEITEM}] }]
+}
+annotate view ZTDGUIC_BILLING with
+{
+
+  @UI.facet: [ {
+    id: 'idIdentification',
+    type: #IDENTIFICATION_REFERENCE,
+    position: 10
+  },
+  {
+    label: '發票表頭資料',
+    id: 'HeaderInfo',
+    type: #COLLECTION,
+    position: 15
+  },
+    {
+    id: 'product_data',
+    purpose: #STANDARD,
+    label: '發票明細',
+//    type: #LINEITEM_REFERENCE,
+    type: #PRESENTATIONVARIANT_REFERENCE,
+    position: 20,
+    targetElement: '_billi'
+  } ]
+
+  @UI.lineItem: [ {
+    position: 10 
+  },
+    { type: #FOR_ACTION, dataAction: 'createBilling', label: '生成發票', position: 10 },
+    { type: #FOR_ACTION, dataAction: 'createBillingjob', label: '生成發票(排程)', position: 15 },    
+    { type: #FOR_ACTION, dataAction: 'generateXml', label: '生成檔案', position: 30} ]
+
+  @UI.identification: [ {
+    position: 10 
+  } ]
+  Billingnum;
+  @Consumption.semanticObject: 'FILE_CREATE'
+  @UI.lineItem: [ {
+    position: 20 
+  },
+   {type: #FOR_INTENT_BASED_NAVIGATION, semanticObjectAction: 'display', label: 'Go to File App'} ]
+  @UI.identification: [ {
+    position: 20 
+  } ]
+  Sellernum;
+
+  @UI.lineItem: [ {
+    position: 30
+  } ]
+  @UI.identification: [ {
+    position: 30
+  } ]
+  Sellername;
+
+  @UI.lineItem: [ {
+    position: 40
+  } ]
+  @UI.identification: [ {
+    position: 40
+  } ]
+  Buyernum;
+
+  @UI.lineItem: [ {
+    position: 50
+  } ]
+  @UI.identification: [ {
+    position: 50
+  } ]
+  Amount;
+
+  @UI.lineItem: [ {
+    position: 55
+  } ]
+  @UI.identification: [ {
+    position: 55
+  } ]
+  Quantityall;
+
+  @UI.lineItem: [ {
+    position: 60
+  } ]
+  @UI.identification: [ {
+    position: 60
+  } ]
+  Random;
+
+  @UI.lineItem: [ {
+    position: 70
+  } ]
+  @UI.identification: [ {
+    position: 70
+  } ]
+  Type;
+
+  @UI.lineItem: [ {
+    position: 80
+  } ]
+  @UI.identification: [ {
+    position: 80
+  } ]
+  Date01;
+
+  @UI.lineItem: [ {
+    position: 90
+  } ]
+  @UI.identification: [ {
+    position: 90
+  } ]
+  Time01;
+
+  @Consumption.semanticObject: 'ZNE_PDF_STORE'
+  @UI: {lineItem: [
+  {type: #FOR_INTENT_BASED_NAVIGATION, 
+   semanticObjectAction: 'display', 
+   label: 'Go to PDF Store',
+   position: 31 }
+  ] }
+
+  @UI.hidden: true
+  Locallastchangedat;
+}

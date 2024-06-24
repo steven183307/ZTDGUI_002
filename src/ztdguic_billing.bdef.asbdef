@@ -1,0 +1,33 @@
+projection;
+strict ( 1 );
+use draft;
+
+define behavior for ZTDGUIC_BILLING alias billh
+use etag
+
+{
+  use create;
+  use update;
+  use delete;
+
+  use action createBilling;
+  use action createBillingjob;
+  use action generateXml;
+
+  use action Edit;
+  use action Activate;
+  use action Discard;
+  use action Resume;
+  use action Prepare;
+
+  use association _billi { create; with draft; }
+}
+
+define behavior for ZTDGUIC_BILLDETL alias billi
+{
+  use update;
+  use delete;
+
+
+  use association _billh { with draft; }
+}
